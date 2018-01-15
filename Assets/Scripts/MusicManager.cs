@@ -15,10 +15,15 @@ public class MusicManager : MonoBehaviour {
     private void OnEnable() {
         SceneManager.sceneLoaded += OnLevelFinishedLoading;
         audio = GetComponent<AudioSource>();
+        audio.volume = PlayerPrefsManager.GetMasterVolume();
     }
 
     private void OnDisable() {
         SceneManager.sceneLoaded -= OnLevelFinishedLoading;
+    }
+
+    public void SetVolume(float volume) {
+        audio.volume = volume;
     }
 
     private void OnLevelFinishedLoading(Scene scene, LoadSceneMode mode) {
